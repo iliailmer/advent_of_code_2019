@@ -8,9 +8,21 @@ with open('./inputs/day1.txt', 'r') as f:
 
 
 def fuel(mass: int):
-    return mass//3 - 2
+    return max(mass//3 - 2, 0)
+
+
+def full_fuel(mass: List[int]):
+    s = 0
+    for i in range(len(mass)):
+        old_mass = mass[i]
+        new_mass = 0
+        while fuel(old_mass) != 0:
+            new_mass = fuel(old_mass)
+            old_mass = new_mass
+            s += new_mass
+    return s
 
 
 if __name__ == "__main__":
-    result = [fuel(x) for x in masses]
+    result = [full_fuel([x]) for x in masses]
     print(sum(result))
