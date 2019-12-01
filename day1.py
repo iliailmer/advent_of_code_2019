@@ -1,4 +1,6 @@
 from typing import List
+
+
 masses: List[int] = []
 with open('./inputs/day1.txt', 'r') as f:
     line = f.readline()
@@ -7,11 +9,11 @@ with open('./inputs/day1.txt', 'r') as f:
         line = f.readline()
 
 
-def fuel(mass: int):
+def fuel(mass: int) -> int:
     return max(mass//3 - 2, 0)
 
 
-def full_fuel(mass: List[int]):
+def full_fuel(mass: List[int]) -> int:
     s = 0
     for i in range(len(mass)):
         old_mass = mass[i]
@@ -24,5 +26,7 @@ def full_fuel(mass: List[int]):
 
 
 if __name__ == "__main__":
-    result = [full_fuel([x]) for x in masses]
-    print(sum(result))
+    part1 = [fuel(x) for x in masses]
+    print(sum(part1))
+    part2 = [full_fuel([x]) for x in masses]
+    print(sum(part2))
